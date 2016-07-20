@@ -15,7 +15,8 @@ define([
 		getInitialState: function() {
 		    return {
 		    	selected: 0,
-		    	selectedTab: 'statistics',
+		    	//selectedTab: 'statistics', //Changed by Vinayak 07.13.16 to Remove Statistics
+		    	selectedTab: 'filter',		//Changed by Vinayak 07.13.16 to Remove Statistics
 		    	selectedAccordian: -1,
 		    	cleared: false
 		    };
@@ -32,6 +33,7 @@ define([
 		},
 
 		selectAccordian: function(index){
+			console.log('inside select accordian');
 			var filters = this.props.keys.accordian.items;
 			var selected = filters[index].selected ? index: -1;
 			this.setState({selectedAccordian:selected});
@@ -43,7 +45,11 @@ define([
 
 		selectFilter: function(filterGroup){
 
+			console.log('inside selectfilter');
+			console.log('filterGroup', filterGroup);
+
 			var me = this;
+			console.log('me', me);
 			//have to determine if application lost a value
 			if(filterGroup.value == 'dataApplication'){
 
@@ -134,6 +140,9 @@ define([
 				if (item.selected){
 					return true;
 				}
+
+			console.log('curSelected',curSelected);
+
 			});
 			if(filterGroup.source){
 				if(filterGroup.source.field){
@@ -146,19 +155,56 @@ define([
 		},
 
 		renderAccordian: function(accordian,state){
+			//accFlag = 0; //test
 			var accordianItems = accordian.items.map(function(accordianItem,accIndex){
 				var filterOptions = accordianItem.items.map(function(filterItem,filterIndex){
 				 	var childKey = filterItem.value + filterIndex.toString() + accIndex.toString();
+
+
+				 	//console.log('renderAccordian childKey',childKey);///Vinayak
+				 	//console.log('renderAccordian filterItem',filterItem);///Vinayak
+				 	//console.log('renderAccordian First selectable item call');
+
+				 	//test
+/*					return(
+						React.createElement(SelectableItem, {key: filterIndex, keys: filterItem})
+					) */
+
+				 	if (filterItem.fieldName != 'machine_read')
+				 	{
+				 	//console.log('renderAccordian != machine_read');
 					return(
 						React.createElement(SelectableItem, {key: filterIndex, keys: filterItem})
 					) 
+					}
+					else
+					{	
+					//	console.log('renderAccordian == machine_read');
+						return null}
+
 				})
+
+				 //	console.log('renderAccordian accordianItems',accordianItems);///Vinayak
+				 //	console.log('renderAccordian filterOptions',filterOptions);///Vinayak
 
 				var divStyle = state.selectedAccordian === accIndex ? {} : {display:'none'};
 
 				accordianItem.selected = state.selectedAccordian === accIndex
 				accordianItem.toggle = true;
 
+				//console.log('renderAccordian Second selectable item call', accordianItem);
+				//test
+/*				return( 
+					React.createElement("div", {className: 'br-accordian'}, 
+						React.createElement(SelectableItem, {key: accIndex, keys: accordianItem}
+						), 
+						React.createElement("div", {className: "accordian-content", style: divStyle}, 
+							filterOptions
+						)
+					)
+				);*/
+				if(accordianItem.value != 'machineread')
+				{
 				return( 
 					React.createElement("div", {className: 'br-accordian'}, 
 						React.createElement(SelectableItem, {key: accIndex, keys: accordianItem}
@@ -168,6 +214,86 @@ define([
 						)
 					)
 				);
+				}
+				else
+				{
+					return null
+				}
+
+
+			});
+			return accordianItems;
+		},
+
+		//Added by Vinayak 07.18.16
+		//For Machine Readable Accordian
+		renderAccordian_mac: function(accordian,state){
+			// accFlag = 1; //test
+			var accordianItems = accordian.items.map(function(accordianItem,accIndex){
+				var filterOptions = accordianItem.items.map(function(filterItem,filterIndex){
+				 	var childKey = filterItem.value + filterIndex.toString() + accIndex.toString();
+
+				 	//console.log('renderAccordian_mac childKey',childKey);///Vinayak
+				 	//console.log('renderAccordian_mac filterItem',filterItem);///Vinayak
+				 	//console.log('renderAccordian_mac First selectable item call');
+				 	
+				 	//test
+/*				 	return(
+						React.createElement(SelectableItem, {key: filterIndex, keys: filterItem})
+					) */
+
+					//console.log('renderAccordian_mac filterItem.fieldname', filterItem.fieldName);
+				 	if (filterItem.fieldName == 'machine_read')
+				 	{
+				 	//console.log('renderAccordian_mac selectable item using machine_read');
+					return(
+						React.createElement(SelectableItem, {key: filterIndex, keys: filterItem})
+					) 
+					}
+					else
+					{	
+					//	console.log('renderAccordian_mac no machine_read');
+						return null}
+					
+				})
+
+				 	//console.log('renderAccordian_mac accordianItems',accordianItems);///Vinayak
+				 	//console.log('renderAccordian_mac filterOptions',filterOptions);///Vinayak
+
+				var divStyle = state.selectedAccordian === accIndex ? {} : {display:'none'};
+
+				accordianItem.selected = state.selectedAccordian === accIndex
+				accordianItem.toggle = true;
+
+				//console.log('renderAccordian_mac Second selectable item call', accordianItem.value);
+				//test
+
+/*				return( 
+					React.createElement("div", {className: 'br-accordian'}, 
+						React.createElement(SelectableItem, {key: accIndex, keys: accordianItem}
+						), 
+						React.createElement("div", {className: "accordian-content", style: divStyle}, 
+							filterOptions
+						)
+					)
+				);*/
+				if(accordianItem.value == 'machineread')
+				{
+				return( 
+					React.createElement("div", {className: 'br-accordian'}, 
+						React.createElement(SelectableItem, {key: accIndex, keys: accordianItem}
+						), 
+						React.createElement("div", {className: "accordian-content", style: divStyle}, 
+							filterOptions
+						)
+					)
+				);
+				}
+				else
+				{
+					return null
+				}
+
 			});
 			return accordianItems;
 		},
@@ -180,7 +306,13 @@ define([
 
 					filterItem.selected = false;
 				});
+							console.log('filterOptions',filterOptions);
 			});
+
+			//console.log('accordian',accordian);
+			console.log('accordianItems',accordianItems);
+
+
 			this.props.keys.clearFilter();
 			this.forceUpdate();
 			this.props.keys.closePopups();
@@ -190,6 +322,8 @@ define([
 			var searchValue = document.getElementById("search-box").value
 			this.props.keys.setSearchFilter(searchValue);
 		},
+
+
 
 		render:function(){
 			var props = this.props.keys;
@@ -206,6 +340,7 @@ define([
 						subitem.selected = false;
 					}
 					subitem.changed = function(args){
+						console.log('inside leftpanel render before calling self.selectFilter(item)',self);
 						self.selectFilter(item);
 					}
 				});
@@ -213,15 +348,27 @@ define([
 
 			var accordianItems = this.renderAccordian(props.accordian,state);
 
-			var accordianDisplay = props.tabs.items[1].value == this.state.selectedTab ? {}:{display:'none'};
+			//Added by Vinayak 07.18.16
+			var accordianItems_mac = this.renderAccordian_mac(props.accordian,state);
 
-			var statsDisplay = props.tabs.items[0].value == this.state.selectedTab ? {}:{display:'none'};
-			props.tabs.changed = this.switchTabs;
+			console.log("accordianItems", accordianItems);
+			console.log("accordianItems_mac", accordianItems_mac);
 
+			//Changed by Vinayak 07.13.16 to Remove Statistics
+			//var accordianDisplay = props.tabs.items[1].value == this.state.selectedTab ? {}:{display:'none'};
+			var accordianDisplay = props.tabs.items[0].value == this.state.selectedTab ? {}:{display:'none'};
+
+			//Commented by Vinayak 07.13.16 to Remove Statistics
+			//var statsDisplay = props.tabs.items[0].value == this.state.selectedTab ? {}:{display:'none'};
+			//props.tabs.changed = this.switchTabs;
+
+			console.log("before return accordianItems",accordianItems);
+
+			
 			return (
 				React.createElement("div", {className: "left-panel-container absolute no-right no-left no-top no-bottom"}, 
-					React.createElement("div", {className: 'selectable-group-container'}, 
-						React.createElement(SelectableGroup, {keys: props.tabs}), 
+					React.createElement("div", {className: 'selectable-group-container'}, 	//Related to Statistics Tab				
+						React.createElement(SelectableGroup, {keys: props.tabs}), 			//Related to Statistics Tab
 						React.createElement("div", {className: 'tab-content'}, 
 							React.createElement("div", {className: 'input-container'}, 
 								React.createElement("input", {id: "search-box", placeholder: 'search for organization', onChange: _.debounce(this.submitSearch, 500)})
@@ -229,27 +376,54 @@ define([
 							React.createElement("div", {className: 'accordian-container', style: accordianDisplay}, 
 								accordianItems
 							), 
-							React.createElement("div", {style: statsDisplay}, 
+
+							//Commented by Vinayak 07.13.16 to Remove Statistics
+							/*React.createElement("div", {style: statsDisplay}, 
 								React.createElement("div", {id: props.statisticsDiv})
 							), 
+							*/
+							//End of Comment
+
 							React.createElement("button", {className: 'export-button', onClick: this.clearFilters}, "Clear Filters"), 
-							React.createElement("button", {className: 'export-button', onClick: props.exportTableData, id: 'export-button'}, "Download filtered data - CSV"), 
-							React.createElement("button", {className: 'export-button', onClick: props.exportTableDataJSON, id: 'export-button-json'}, "Download filtered data - JSON"), 
+
+							//test
+							React.createElement("div", {className: 'accordian-container_mac', style: accordianDisplay}, 
+								accordianItems_mac
+							), 
+							//React.createElement("button", {className: 'export-button', onClick: this.setMachine}, "Machine Readable"), 
+							//Start of Comment by Vinayak 07.13.16
+							//To remove download buttons
+							//React.createElement("button", {className: 'export-button', onClick: props.exportTableData, id: 'export-button'}, "Download filtered data - CSV"), 
+							//React.createElement("button", {className: 'export-button', onClick: props.exportTableDataJSON, id: 'export-button-json'}, "Download filtered data - JSON"), 
+
+							//****Add comma at the end of previous line if adding anything after this
+
 							//Start of Comment by Vinayak 07.07.16
             				//To remove export map from filters
+            				//To remove export maap from filters
 							//React.createElement("button", {className: 'export-button', onClick: props.exportMap, id: 'export-map-button'}, "Export Map"), 
 							//End of Comment by Vinayak 07.07.16
-							React.createElement("button", {className: 'export-button', onClick: this.loadSurvey, id: 'survey-button'}, "Take Survey"), 
+							//To remove Take Survey Button Vinayak Pande 07.12.16
+							//React.createElement("button", {className: 'export-button', onClick: this.loadSurvey, id: 'survey-button'}, "Take Survey"), 
+							
+							//test
+							//React.createElement("button", {className: 'export-button', onClick: }, "Machine Readability"),
+
+							//Start of Comment to remove license holder
 							React.createElement("div", {className: 'license-holder'}, 
-								React.createElement("span", null, "The Open Data Impact Map, a project of the Center for Open Data Enterprise as part of the OD4D network, is licensed under ", React.createElement("a", {href: 'http://creativecommons.org/licenses/by-sa/4.0/'}, "Creative Commons Attribution-ShareAlike 4.0 International License"))
-							), 
-							React.createElement("div", {className: 'creative-commons-logo'})
+								//React.createElement("span", null, "The Open Data Impact Map, a project of the Center for Open Data Enterprise as part of the OD4D network, is licensed under ", React.createElement("a", {href: 'http://creativecommons.org/licenses/by-sa/4.0/'}, "Creative Commons Attribution-ShareAlike 4.0 International License"))
+								React.createElement("span", null, "Some text Some text Some text Some text Some text Some text")
+							
+							)//, 
+							//React.createElement("div", {className: 'creative-commons-logo'})
+						
 						)
-					)
+					) //Related to Statistics Tab
 				)
 			);
 		}
 	});
+
 	return function(props, id){
 		return React.render(React.createElement(LeftPanel, {keys: props}), document.getElementById(id));
 	}

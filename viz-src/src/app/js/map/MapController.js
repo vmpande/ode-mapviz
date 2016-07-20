@@ -40,12 +40,13 @@ define([/*"esri/map",*/
                 statistics.filters.push({label: filter});
             })
         })
-        if(document.getElementById('filterStats')){
+//Commented by Vinayak 07.13.16 to Remove Statistics     
+/*        if(document.getElementById('filterStats')){
             new StatisticsPane(statistics,'filterStats');
         } else {
             setTimeout(function(){StatisticsPane(statistics,'filterStats')}, 1000); //hack for race condition
-        }
-
+        }*/
+//End of Comment
     }
     var mapEventHandlers = function(){
         var filterFeatures = function(){
@@ -201,11 +202,23 @@ define([/*"esri/map",*/
         // brmap.setBasemap(obj.target.id);
     }
     control.getMap = function(){
+        console.log('inside brmap');
         return brmap;
     }
 
+//Added by Vinayak
+    control.addMaclayer = function(){
+    console.log('inside mapcontroller addlayer');   
+/*         var geojson;
+        geojson = L.geoJson(regions).addTo(brmap);
+*/
+    }
+
+//End of Addition
 
     control.init = function(mapDiv){
+
+          console.log('inside init');
 
         var lat = 20.89009754221236;
         var lng = 30.03990936279297;
@@ -225,6 +238,8 @@ define([/*"esri/map",*/
                     .setView([lat, lng], zoom);
         
         basemap = L.esri.basemapLayer("Topographic").addTo(brmap);
+        //basemap = L.esri.basemapLayer("Gray").addTo(brmap);
+        //L.esri.basemapLayer("GrayLabels").addTo(brmap);
         L.control.scale().addTo(brmap);
         brmap.layerControl = LayerControl.create(brmap);
 
@@ -317,6 +332,75 @@ define([/*"esri/map",*/
            // add the new control to the map
         zoomHome = new L.Control.zoomHome();
         zoomHome.addTo(brmap);
+
+//Added by Vinayak Pande 07.19.16
+//To highlight layers
+/*
+        function style(feature) {
+            return {
+                weight: 0,
+                opacity: 0,
+                color: 'white',
+                dashArray: '',
+                fillOpacity: 0.0,
+                //fillColor: getColor(feature.properties.density)
+            };
+        }
+        //var textlayer;
+        function highlightFeature(e) {
+
+            console.log("inside highlightFeature");
+            console.log("e",e);
+            
+            //map.removeLayer(heatmapLayer);
+            var layer = e.target;
+
+            layer.setStyle({
+                weight: 1,
+                color: '#31a354',
+                dashArray: '',
+                fillOpacity: 1.0
+//              fillColor: 'FEB24C'
+            });
+
+            if (!L.Browser.ie && !L.Browser.opera) {
+                layer.bringToFront();
+            }
+
+            basemap.setOpacity(0.4);
+        }
+
+        function resetHighlight(e) {
+            //To remove the Region name Layer 
+            console.log("inside resetHighlight");
+            var layer = e.target;
+
+            geojson.resetStyle(e.target);
+
+            basemap.setOpacity(1.0);
+
+            //layer.removeLayer(textlayer);
+            //map.addLayer(heatmapLayer);
+            
+        }
+
+        function onEachFeature(feature, layer) {
+            layer.on({
+                mouseover: highlightFeature,
+                mouseout: resetHighlight
+               // click: clickPage
+            });
+        }
+
+        var geojson;
+        geojson = L.geoJson(regions, {
+            style: style,
+            onEachFeature: onEachFeature
+        //}).addTo(map);
+        }).addTo(brmap);    
+*/
+
+//End of Additiom by Vinayak Pande
 
 
     }

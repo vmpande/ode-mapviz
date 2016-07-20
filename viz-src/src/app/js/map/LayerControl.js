@@ -36,16 +36,17 @@ function(
 				id: "markerPopup",
 				titleField: "org_name",
 				displayFields: [
-					{field:'org_hq_country',label:'Country'},
+					//{field:'org_hq_country',label:'Country'}, //Commented by Vinayak 07.12.16
 					{field: 'org_hq_city', label: 'City'},
 					//{field: 'org_year_founded', label: 'Founding Year'}, //Commented by Vinayak 07.08.2016
 					//{field: 'org_size_id', label: 'Size'}, //Commented by Vinayak 07.08.2016
-					{field: 'org_type', label: 'Organization Type'},
+					//{field: 'org_type', label: 'Organization Type'}, //Commented by Vinayak 07.12.16
 					// {field: 'org_', label: 'Data Use'},
 					{field: 'org_url', label: 'URL'},
-					//{field: 'org_description', label: 'Description'}, //Commented by Vinayak 07.08.2016
-					{field: 'industry_id', label: 'Category'},
-					{field: 'org_profile_category', label: 'Entry Based On'},
+					{field: 'org_description', label: 'Description'},
+					//{field: 'data_type', label: 'Type of data used'}, //Added by Vinayak 07.12.16
+					//{field: 'industry_id', label: 'Category'}, //Commented by Vinayak 07.12.16
+					//{field: 'org_profile_category', label: 'Entry Based On'}, //Commented by Vinayak 07.12.16
 				],
 				idField: 'profile_id'
 			}
@@ -108,6 +109,31 @@ function(
 				return item
 			});
 
+			//console.log("marker.attributes.dataCell", marker.attributes.dataCell);
+			
+			//Start of Addition Vinayak 07.13.16
+			// To get only data tyoe in data use
+			if(marker.attributes.dataCell)
+			{
+			
+			var datause = marker.attributes.dataCell;
+			var uniqueList=datause.split(', ').filter(function(item,i,allItems){
+    		return i==allItems.indexOf(item);
+			}).join(', ');
+
+			uniqueList = uniqueList.slice(0, -2);
+
+			marker.attributes.dataCell = uniqueList;
+
+			//console.log('uniqueList: ',uniqueList);
+
+			items.push({
+				label: "Data Use",
+				value: "" + marker.attributes.dataCell
+			})
+			}
+			//End of Addition
+
 			//Start of comment Vinayak Pande 07.08.2016
 			//To remove Data Use and application from popup results
 			/*items.push({
@@ -167,7 +193,6 @@ function(
 			openPopup(popupObj,marker.getLatLng(),{constructor:WidgetFactory.CompanyPopup,props:props});
 		}
 
-
 		clusterLayer.on('clusterclick', function (a) {
 				var markers = a.layer.getAllChildMarkers();
 				// var cluster_stats = MapConfig.clusterStatFields.map(function(stat){
@@ -202,6 +227,7 @@ function(
 			 console.log("In layercontrol setSearchFilter"); //Vinayak
 			searchFilter = filter;
 			//this.filterFeatures(this.getFilters());
+			console.log('inside LayerControl control.setSearchFilter');
 			map.filterFeatures();
 		};
 
@@ -280,7 +306,9 @@ function(
 			if(attributes.data_type){
 				formedString += attributes.data_type + ", ";
 			}
-			if(attributes.data_src_country_locode){
+
+			//test
+			/*if(attributes.data_src_country_locode){
 				formedString += attributes.data_src_country_name + ", ";
 
 
@@ -291,7 +319,7 @@ function(
 
 			if((formedString.trim()).length > 0){
 				formedString += ';\n';
-			}
+			}*/
 
 			return formedString;
 		}

@@ -34,13 +34,15 @@ define([],function(){
        ],
 
        panels: [
-           {
-               selected: true,
+      //Commented by Vinayak 07.13.16 to Remove Statistics
+/*        {
+               selected: false, //true, 
                value: 'statistics',
                label: 'Statistics'
-           },
+           },*/
+      //End of Comment
           {
-              selected: false,
+              selected: true, //false, //Changed by Vinayak 07.13.16 to Remove Statistics
               value: 'filter',
               label: 'Filter'
           }

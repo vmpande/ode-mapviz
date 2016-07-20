@@ -86,6 +86,9 @@ function(
 
 
     var initLeftPanelComponent = function(){
+
+        console.log("inside initLeftPanelComponent");//Vinayak
+
     	var props = {id:'leftPanelComponent'}
 
     	props.tabs = {     
@@ -173,7 +176,7 @@ function(
 
                     filter.items = _.sortBy(filter.items, 'label');
 
-                    console.log("These are filter.items", filter.items); //Vinayak
+                    //console.log("These are filter.items", filter.items); //Vinayak
 
                     //control.getFilterItems = function(valueField, labelField, targetField, fields){
 
@@ -195,7 +198,7 @@ function(
             return deferred;
         });
 
-        console.log("This is props", props.accordian); //Vinayak
+       // console.log("This is props", props.accordian); //Vinayak
 
     	All(deferreds).then(function(results){
            
@@ -203,7 +206,7 @@ function(
 
             MapController.setMetaProps(props);
 
-            console.log("This is props after deffered", props); //Vinayak
+            //console.log("This is props after deffered", props); //Vinayak
     		var leftPanel = new LeftPanel(props,"leftPanel");
     	});
 

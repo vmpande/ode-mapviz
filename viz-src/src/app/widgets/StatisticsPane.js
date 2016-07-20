@@ -110,6 +110,7 @@ define([
 		}
 	});
 	return function(props, id){
+		//Related to Statistics Tab
 		return React.render(React.createElement(StatisticsPane, {keys: props}), document.getElementById(id));
 	}
 });

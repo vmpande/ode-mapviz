@@ -321,14 +321,25 @@ define(['table/TableController', 'widgets/CompanyPopup', 'react'],function(Table
 			]
 
 			//Change by Vinayak 07.08.2016
-			//To Change Company Name label to Organization Name label
+			//To Change Company Name label to Organization Name label and Insutry Category to Sectors
 			//var columns = ["Company Name", "Region", "Country", "Organization Type", "Industry Category", "Description", "Data Use"];
-			var columns = ["Organization Name", "Region", "Country", "Organization Type", "Industry Category", "Description", "Data Use"];
+			var columns = ["Organization Name", "Region", "Country", "Organization Type", "Sectors", "Description", "Data Use"];
 
 			//debugger; Commented by Vinayak
 
 			_.forEach(rawData.keys, function(item){
 				var attr = item.attributes;
+			
+			//Added by Vinayak Pande 07.13.2016
+			//	
+			var datause = attr.dataCell;
+			var uniqueList=datause.split(', ').filter(function(item,i,allItems){
+    		return i==allItems.indexOf(item);
+			}).join(', ');
+			uniqueList = uniqueList.slice(0, -2);
+			attr.dataCell = uniqueList;
+			//End of Addition
+
 				//console.log("attr", attr); //Vinayak
 
 				var data = {					
@@ -338,8 +349,10 @@ define(['table/TableController', 'widgets/CompanyPopup', 'react'],function(Table
 			//To Change Company Name label to Organization Name label
 			//		"Company Name": attr.org_name,
 					"Organization Name": attr.org_name,
-					'Organization Type': attr.org_type,					
-					"Industry Category": attr.industry_id,
+					'Organization Type': attr.org_type,		
+			//Change by Vinayak 07.12.16
+			//To Change Insutry Category to Sectors	
+					"Sectors": attr.industry_id,
 					"Description": attr.org_description,
 					'URL': attr.org_url,
 					"City": attr.org_hq_city,

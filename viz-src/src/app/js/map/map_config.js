@@ -136,7 +136,9 @@ define([],function(){
                             }
                     ]
                 },
-                {
+             //Start of Comment by Vinayak 07.12.16
+            //To remove Industry Category from filters
+                /*{
                     label: 'Industry Category',
                     value: 'industry',
                     selected: false,
@@ -146,7 +148,8 @@ define([],function(){
                     },
                     items: [
                     ]
-                },
+                },*/
+            //End of Comment by Vinayak 07.12.16
                 {
                     label: 'Type of Data Used',
                     value: 'datatype',
@@ -157,7 +160,19 @@ define([],function(){
                     },
                     items: []
                 },
-                { /* Myeong added */
+                  {
+                    label: 'Machine Readabilty Project',
+                    value: 'machineread',
+                    selected: false,
+                    source: {
+                      url:features, 
+                      field:'machine_read'
+                    },
+                    items: []
+                },
+             //Start of Comment by Vinayak 07.12.16
+            //To remove Data Source from filters
+                /*{
                     label: 'Data Source',
                     value: 'datasource',
                     selected: false,
@@ -166,7 +181,8 @@ define([],function(){
                       field:'data_src_country_name'
                     },
                     items: []
-                },
+                },*/
+              //End of Comment by Vinayak 07.12.16
                 /* commented out for the future use. by Myeong
                 { 
                     label: 'Age of Organization',

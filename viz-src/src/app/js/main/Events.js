@@ -120,6 +120,7 @@ define([/*"esri/map",*/
     }
 
     exports.updateStatistics = function(statistics){
+        //Commented by Vinayak 07.13.16 to Remove Statistics
         // View.renderStatisticsPane(statistics);
     }
 

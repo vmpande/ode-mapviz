@@ -160,7 +160,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	            parentRowCollapsedClassName: "parent-row",
 	            parentRowExpandedClassName: "parent-row expanded",
 	            settingsToggleClassName: "settings",
+	            //test
 	            nextClassName: "griddle-next",
+	            //previousClassName: "griddle-previous",
 	            previousClassName: "griddle-previous",
 	            headerStyles: {},
 	            /* icon components */
