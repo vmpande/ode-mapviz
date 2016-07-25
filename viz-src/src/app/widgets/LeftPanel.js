@@ -155,13 +155,18 @@ define([
 		},
 
 		renderAccordian: function(accordian,state){
+			
 			//accFlag = 0; //test
 			var accordianItems = accordian.items.map(function(accordianItem,accIndex){
 				var filterOptions = accordianItem.items.map(function(filterItem,filterIndex){
 				 	var childKey = filterItem.value + filterIndex.toString() + accIndex.toString();
 
-
-				 	//console.log('renderAccordian childKey',childKey);///Vinayak
+				 // 	if (state.selectedAccordian == 4 && filterItem.value == "Low income"){
+					// 	 		console.log(filterItem);//Vinayak
+					// 	 		console.log(accordianItem);
+						 		
+					// 	 	filterItem.selected = true;
+					// }
 				 	//console.log('renderAccordian filterItem',filterItem);///Vinayak
 				 	//console.log('renderAccordian First selectable item call');
 
@@ -173,14 +178,15 @@ define([
 				 	if (filterItem.fieldName != 'machine_read')
 				 	{
 				 	//console.log('renderAccordian != machine_read');
-					return(
-						React.createElement(SelectableItem, {key: filterIndex, keys: filterItem})
-					) 
+						return(
+							React.createElement(SelectableItem, {key: filterIndex, keys: filterItem})
+						) 
 					}
 					else
 					{	
 					//	console.log('renderAccordian == machine_read');
-						return null}
+						return null
+					}
 
 				})
 
@@ -245,10 +251,9 @@ define([
 					//console.log('renderAccordian_mac filterItem.fieldname', filterItem.fieldName);
 				 	if (filterItem.fieldName == 'machine_read')
 				 	{
-				 	//console.log('renderAccordian_mac selectable item using machine_read');
-					return(
-						React.createElement(SelectableItem, {key: filterIndex, keys: filterItem})
-					) 
+						return(
+							React.createElement(SelectableItem, {key: filterIndex, keys: filterItem})
+						) 
 					}
 					else
 					{	
@@ -331,24 +336,50 @@ define([
 			var state = this.state;
 			var setState = this.setState;
 			var self = this;
-			props.accordian.items.forEach(function(item,index){
-				item.changed = function(args){
-					self.selectAccordian(index);
-				}
-				item.items.forEach(function(subitem){
-					if (state.cleared){
-						subitem.selected = false;
-					}
-					subitem.changed = function(args){
-						console.log('inside leftpanel render before calling self.selectFilter(item)',self);
-						self.selectFilter(item);
-					}
-				});
-			});
 
+			if (state.selectedAccordian == 4){
+				props.accordian.items.forEach(function(item,index){
+					//Myeong -- for now, the framework does not allow openning two filters.
+					// console.log(item);
+					// if (item.value == "country_income"){
+					// 	self.selectAccordian(index);
+					// }
+					item.changed = function(args){
+						self.selectAccordian(index);
+					}
+					item.items.forEach(function(subitem){
+						if (state.cleared){
+							subitem.selected = false;
+						}
+						// myeong, 7/25
+						if (subitem.value == "Low income"){
+							subitem.selected = true;
+							self.selectFilter(item);
+						}
+						subitem.changed = function(args){
+							self.selectFilter(item);
+						}
+					});
+				});
+			} else {
+				props.accordian.items.forEach(function(item,index){
+					item.changed = function(args){
+						self.selectAccordian(index);
+					}
+					item.items.forEach(function(subitem){
+						if (state.cleared){
+							subitem.selected = false;
+						}
+						subitem.changed = function(args){
+							console.log('inside leftpanel render before calling self.selectFilter(item)',self);
+							self.selectFilter(item);
+						}
+					});
+				});
+			}
 			var accordianItems = this.renderAccordian(props.accordian,state);
 
-			//Added by Vinayak 07.18.16
+				//Added by Vinayak 07.18.16
 			var accordianItems_mac = this.renderAccordian_mac(props.accordian,state);
 
 			console.log("accordianItems", accordianItems);

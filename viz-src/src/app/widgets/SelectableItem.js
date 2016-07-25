@@ -49,6 +49,7 @@ define([
 		    	console.log('handleClick_mac props',props);
 
 				MapController.addMaclayer();
+				return props.selected;
 				
 		 },
 		 //End of Addition by Vinayak
@@ -123,11 +124,11 @@ define([
 			}
 			else if (this.props.keys.value === 'machineread') 
 			{
-				console.log('inside machineread');
-						return (
-			React.createElement("div", {onClick: handleClick_mac, className: classString}, 
-					React.createElement("span", {className: "company-title-label"}, props.label)
-				));
+				
+					return (
+						React.createElement("div", {onClick: handleClick_mac, className: classString}, 
+								React.createElement("span", {className: "company-title-label"}, props.label)
+							));
 			}
 			else
 			{
