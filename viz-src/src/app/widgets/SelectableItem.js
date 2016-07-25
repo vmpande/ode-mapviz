@@ -49,7 +49,6 @@ define([
 		    	console.log('handleClick_mac props',props);
 
 				MapController.addMaclayer();
-				return props.selected;
 				
 		 },
 		 //End of Addition by Vinayak
