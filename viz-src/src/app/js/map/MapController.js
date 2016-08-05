@@ -220,11 +220,11 @@ define([/*"esri/map",*/
 
           console.log('inside init');
 
-        var lat = 20.89009754221236;
-        var lng = 30.03990936279297;
+        var lat = 30.89009754221236;
+        var lng = 15.03990936279297;
         var zoom = 2;
 
-        brmap = new L.Map(mapDiv, {zoomControl:false, maxZoom: 10, minZoom: 2, 
+        brmap = new L.Map(mapDiv, {zoomControl:false, maxZoom: 5, minZoom: 2,
         //Added by Vinayak 07.08.16
         //To disable infinite horizontal scroll
         maxBounds: 
@@ -232,12 +232,17 @@ define([/*"esri/map",*/
         //south west
         [-47, 200],
         //north east
-        [68, -169]
+        [75, -169]
         ]
         })
                     .setView([lat, lng], zoom);
         
-        basemap = L.esri.basemapLayer("Topographic").addTo(brmap);
+        //basemap = L.esri.basemapLayer("Topographic").addTo(brmap);
+
+       basemap = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    //maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(brmap);
         //basemap = L.esri.basemapLayer("Gray").addTo(brmap);
         //L.esri.basemapLayer("GrayLabels").addTo(brmap);
         L.control.scale().addTo(brmap);
@@ -251,6 +256,9 @@ define([/*"esri/map",*/
                 filterValues.labels[source.field] = [];
             }
         });
+
+
+        //basemap.setOpacity(0.4);
 
         brmap.updateStatistics = updateStatistics;
         mapEventHandlers();
@@ -335,8 +343,8 @@ define([/*"esri/map",*/
 
 //Added by Vinayak Pande 07.19.16
 //To highlight layers
-/*
-        function style(feature) {
+
+/*        function style(feature) {
             return {
                 weight: 0,
                 opacity: 0,
@@ -357,7 +365,7 @@ define([/*"esri/map",*/
 
             layer.setStyle({
                 weight: 1,
-                color: '#31a354',
+                color: '#218C8D',
                 dashArray: '',
                 fillOpacity: 1.0
 //              fillColor: 'FEB24C'
@@ -397,8 +405,8 @@ define([/*"esri/map",*/
             style: style,
             onEachFeature: onEachFeature
         //}).addTo(map);
-        }).addTo(brmap);    
-*/
+        }).addTo(brmap);    */
+
 
 //End of Additiom by Vinayak Pande
 

@@ -41,11 +41,11 @@ define([],function(){
                label: 'Statistics'
            },*/
       //End of Comment
-          {
+/*          {
               selected: true, //false, //Changed by Vinayak 07.13.16 to Remove Statistics
               value: 'filter',
               label: 'Filter'
-          }
+          }*/
           //,
           // {
           //     selected: true,

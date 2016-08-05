@@ -128,6 +128,12 @@ define([/*"esri/map",*/
         MapController.getMap().closePopup();
     }
 
+    //Added by Vinayak for adding Machine Readability Layer 07.28.16
+    exports.addLayer = function(){
+        console.log('inside exports.addLayer ');
+        MapController.addMaclayer();
+    }
+
     return(exports);
 });
 

@@ -1164,10 +1164,11 @@ button, .button {
   border-color: #007095;
   color: #FFFFFF;
   transition: background-color 300ms ease-out; }
-  button:hover, button:focus, .button:hover, .button:focus {
+  /*Commeented by Vinayak*/
+/*  button:hover, button:focus, .button:hover, .button:focus {
     background-color: #007095; }
   button:hover, button:focus, .button:hover, .button:focus {
-    color: #FFFFFF; }
+    color: #FFFFFF; }*/
   button.secondary, .button.secondary {
     background-color: #e7e7e7;
     border-color: #b9b9b9;

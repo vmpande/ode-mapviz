@@ -1338,6 +1338,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    // If we have a fixed header, split into two tables.
 	    if (this.props.useFixedHeader) {
+	    	console.log('inside useFixedHeader'); //VInayak
 	      if (this.props.useGriddleStyles) {
 	        tableStyle.tableLayout = "fixed";
 	      }
