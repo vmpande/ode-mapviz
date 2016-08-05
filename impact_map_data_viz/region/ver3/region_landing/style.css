@@ -1,0 +1,8 @@
+path.domain {
+  stroke: none;
+}
+
+rect:hover {
+  fill: #FFD700 !important;
+  pointer-events: all;
+}

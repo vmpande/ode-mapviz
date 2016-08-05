@@ -1,0 +1,17 @@
+.arc text {
+  font: 10px sans-serif;
+  text-anchor: middle;
+}
+
+.arc path {
+  stroke: #fff;
+}
+
+body {
+  font: 10px sans-serif;
+}
+
+.arc path:hover {
+  fill: #FFD700 !important;
+  pointer-events: all;
+}
