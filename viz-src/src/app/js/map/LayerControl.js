@@ -46,7 +46,7 @@ function(
 					{field: 'org_description', label: 'Description'},
 					//{field: 'data_type', label: 'Type of data used'}, //Added by Vinayak 07.12.16
 					//{field: 'industry_id', label: 'Category'}, //Commented by Vinayak 07.12.16
-					//{field: 'org_profile_category', label: 'Entry Based On'}, //Commented by Vinayak 07.12.16
+					{field: 'org_profile_category', label: 'Entry Based On'}, //Commented by Vinayak 07.12.16
 				],
 				idField: 'profile_id'
 			}
@@ -115,18 +115,18 @@ function(
 			// To get only data tyoe in data use
 			if(marker.attributes.dataCell)
 			{
-			
+			console.log('before marker.attributes.dataCell', marker.attributes.dataCell);
 			var datause = marker.attributes.dataCell;
 			var uniqueList=datause.split(', ').filter(function(item,i,allItems){
     		return i==allItems.indexOf(item);
 			}).join(', ');
 
-			uniqueList = uniqueList.slice(0, -2);
+			//uniqueList = uniqueList.slice(0, -2);
 
 			marker.attributes.dataCell = uniqueList;
 
 			//console.log('uniqueList: ',uniqueList);
-
+				console.log('marker.attributes.dataCell', marker.attributes.dataCell);
 			items.push({
 				label: "Data Use",
 				value: "" + marker.attributes.dataCell
@@ -207,7 +207,9 @@ function(
 				var popupObj = popups.cluster;
 				var props = {companies:companies};
 
-				if(map.getZoom() >= 9){ //popups only open once at low zoom lvl
+				//Change by Vinayak
+				//if(map.getZoom() >= 9){ //popups only open once at low zoom lvl
+				if(map.getZoom() >= 3){ //popups only open once at low zoom lvl
 					openPopup(popupObj,a.latlng,{constructor:WidgetFactory.ClusterPopup,props:props});
 				}
 			    // a.layer.zoomToBounds();

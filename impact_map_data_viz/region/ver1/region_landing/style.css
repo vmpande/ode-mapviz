@@ -1,0 +1,22 @@
+body {
+  font: 9px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+}
+
+.x.axis path {
+  display: none;
+}
+
+path.domain {
+  stroke: none;
+}
+
+.bar:hover {
+  fill: #FFD700 !important;
+  pointer-events: all;
+}

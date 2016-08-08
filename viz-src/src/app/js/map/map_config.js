@@ -44,12 +44,12 @@ define([],function(){
           {
               selected: true,
               value: 'map',
-              label: 'Map Results'
+              label: 'Map View'
           },
           {
               selected: false,
               value: 'Table',
-              label: 'Table Results'
+              label: 'Data View'
           }
 
         ],

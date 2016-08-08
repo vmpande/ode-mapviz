@@ -156,6 +156,7 @@ define([
 
 		renderAccordian: function(accordian,state){
 			
+
 			//accFlag = 0; //test
 			var accordianItems = accordian.items.map(function(accordianItem,accIndex){
 				var filterOptions = accordianItem.items.map(function(filterItem,filterIndex){
@@ -175,7 +176,7 @@ define([
 						React.createElement(SelectableItem, {key: filterIndex, keys: filterItem})
 					) */
 
-				 	if (filterItem.fieldName != 'machine_read')
+/*				 	if (filterItem.fieldName != 'machine_read')
 				 	{
 				 	//console.log('renderAccordian != machine_read');
 						return(
@@ -187,6 +188,10 @@ define([
 					//	console.log('renderAccordian == machine_read');
 						return null
 					}
+*/
+						return(
+							React.createElement(SelectableItem, {key: filterIndex, keys: filterItem})
+						) 
 
 				})
 
@@ -209,7 +214,7 @@ define([
 						)
 					)
 				);*/
-				if(accordianItem.value != 'machineread')
+/*				if(accordianItem.value != 'machineread')
 				{
 				return( 
 					React.createElement("div", {className: 'br-accordian'}, 
@@ -224,7 +229,18 @@ define([
 				else
 				{
 					return null
-				}
+				}*/
+
+
+				return( 
+					React.createElement("div", {className: 'br-accordian'}, 
+						React.createElement(SelectableItem, {key: accIndex, keys: accordianItem}
+						), 
+						React.createElement("div", {className: "accordian-content", style: divStyle}, 
+							filterOptions
+						)
+					)
+				);
 
 
 			});
@@ -331,11 +347,15 @@ define([
 
 
 		render:function(){
+
+			console.log(props);
+
 			var props = this.props.keys;
 			var handleClick = this.handleClick;
 			var state = this.state;
 			var setState = this.setState;
 			var self = this;
+
 
 			if (state.selectedAccordian == 4){
 				props.accordian.items.forEach(function(item,index){
@@ -351,8 +371,10 @@ define([
 						if (state.cleared){
 							subitem.selected = false;
 						}
+
 						// myeong, 7/25
-						if (subitem.value == "Low income"){
+						if (subitem.value == "Low income" || subitem.value == "Low middle income" || subitem.value == "Lower middle income"){
+						//if (subitem.value == "Yes"){
 							subitem.selected = true;
 							self.selectFilter(item);
 						}
@@ -387,8 +409,12 @@ define([
 
 			//Changed by Vinayak 07.13.16 to Remove Statistics
 			//var accordianDisplay = props.tabs.items[1].value == this.state.selectedTab ? {}:{display:'none'};
-			var accordianDisplay = props.tabs.items[0].value == this.state.selectedTab ? {}:{display:'none'};
+			
+			//To remove filters
+			//var accordianDisplay = props.tabs.items[0].value == this.state.selectedTab ? {}:{display:'none'};
+			var accordianDisplay = {};
 
+			console.log('accordianDisplay', accordianDisplay);
 			//Commented by Vinayak 07.13.16 to Remove Statistics
 			//var statsDisplay = props.tabs.items[0].value == this.state.selectedTab ? {}:{display:'none'};
 			//props.tabs.changed = this.switchTabs;
@@ -398,11 +424,11 @@ define([
 			
 			return (
 				React.createElement("div", {className: "left-panel-container absolute no-right no-left no-top no-bottom"}, 
-					React.createElement("div", {className: 'selectable-group-container'}, 	//Related to Statistics Tab				
-						React.createElement(SelectableGroup, {keys: props.tabs}), 			//Related to Statistics Tab
+					//React.createElement("div", {className: 'selectable-group-container'}, 	//Related to Statistics Tab				
+						//React.createElement(SelectableGroup, {keys: props.tabs}), 			//Related to Statistics Tab
 						React.createElement("div", {className: 'tab-content'}, 
 							React.createElement("div", {className: 'input-container'}, 
-								React.createElement("input", {id: "search-box", placeholder: 'search for organization', onChange: _.debounce(this.submitSearch, 500)})
+								React.createElement("input", {id: "search-box", placeholder: 'Search for Organization', onChange: _.debounce(this.submitSearch, 500)})
 							), 
 							React.createElement("div", {className: 'accordian-container', style: accordianDisplay}, 
 								accordianItems
@@ -418,12 +444,13 @@ define([
 							React.createElement("button", {className: 'export-button', onClick: this.clearFilters}, "Clear Filters"), 
 
 							//test
-							React.createElement("div", {className: 'accordian-container_mac', style: accordianDisplay}, 
+/*							React.createElement("div", {className: 'accordian-container_mac', style: accordianDisplay}, 
 								accordianItems_mac
-							), 
+							), */
 							//React.createElement("button", {className: 'export-button', onClick: this.setMachine}, "Machine Readable"), 
 							//Start of Comment by Vinayak 07.13.16
 							//To remove download buttons
+							React.createElement("button", {className: 'download-button', onClick: props.exportTableData, id: 'export-button'}, "Download Data"),
 							//React.createElement("button", {className: 'export-button', onClick: props.exportTableData, id: 'export-button'}, "Download filtered data - CSV"), 
 							//React.createElement("button", {className: 'export-button', onClick: props.exportTableDataJSON, id: 'export-button-json'}, "Download filtered data - JSON"), 
 
@@ -440,16 +467,18 @@ define([
 							//test
 							//React.createElement("button", {className: 'export-button', onClick: }, "Machine Readability"),
 
+							React.createElement("span", {className: 'license-holder'}, " ")
+
 							//Start of Comment to remove license holder
-							React.createElement("div", {className: 'license-holder'}, 
+/*							React.createElement("div", {className: 'license-holder'}, 
 								//React.createElement("span", null, "The Open Data Impact Map, a project of the Center for Open Data Enterprise as part of the OD4D network, is licensed under ", React.createElement("a", {href: 'http://creativecommons.org/licenses/by-sa/4.0/'}, "Creative Commons Attribution-ShareAlike 4.0 International License"))
 								React.createElement("span", null, "Some text Some text Some text Some text Some text Some text")
 							
-							)//, 
+							)*///, 
 							//React.createElement("div", {className: 'creative-commons-logo'})
 						
 						)
-					) //Related to Statistics Tab
+					//) //Related to Statistics Tab
 				)
 			);
 		}

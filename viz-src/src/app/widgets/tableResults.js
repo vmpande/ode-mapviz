@@ -386,7 +386,7 @@ define(['table/TableController', 'widgets/CompanyPopup', 'react'],function(Table
 			return (
 				React.createElement("div", {id: "results-ontainer", className: 'results-container'},
 					React.createElement("div", {id: "table-area", className: "table-area"},
-						React.createElement(Griddle, {results: Data, columnMetadata: columnMetaData, columns: columns, onRowClick: this.showPopup, enableInfiniteScroll: false, resultsPerPage: 9, useFixedHeader: true, tableClassName: "table", initialSort: "Organization Name"}),
+						React.createElement(Griddle, {results: Data, columnMetadata: columnMetaData, columns: columns, onRowClick: this.showPopup, tableClassName: "table", enableInfiniteScroll: false, resultsPerPage: 9, useFixedHeader: true, initialSort: "Organization Name"}),
 						React.createElement("div", {id: "popup-area", className: "table-company-popup"},
 							React.createElement("span", {className: "close-popup", onClick: this.hidePopup}, "X"),
 							React.createElement("div", {id: "company-popup"})

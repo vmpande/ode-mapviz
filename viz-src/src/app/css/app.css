@@ -38,27 +38,59 @@ section.top-bar-section{display:inline-block}
 /* line 38 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
 html{-webkit-tap-highlight-color:transparent}
 /* line 40 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
-body{background:#020b4f;font-family:Lato !important;overflow:hidden}
+/*Change by Vinayak Styling 08.03.2016*/
+/*body{background:#020b4f;font-family:Lato !important;overflow:hidden}*/
+body{background:#eaeaea;font-family: Palanquin, sans-serif !important; color: #2b3d51; overflow:hidden}
+
+
 /* line 45 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
-.br #outerbox{position:absolute;top:115px;bottom:0;left:0;right:0}
+/*Vinayak Styling 08.03.16*/
+/*.br #outerbox{position:absolute;top:115px;bottom:0;left:0;right:0}*/
+.br #outerbox{position:absolute;top:65px;bottom:0;left:0;right:0}
 /* line 51 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
 .br #leftPanel{float:left;width:250px;height:100%;position:relative}
 /* line 61 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
-.input-container{background:#f7f7f7}
+/*Vinayak Styling 08.03.16*/
+/*.input-container{background:#f7f7f7}*/
+.input-container{background:#eaeaea}
 /* line 65 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
-::-webkit-input-placeholder{color:#fff}
+::-webkit-input-placeholder{color:#2b3d51}
 /* line 68 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
-:-moz-placeholder{color:#fff}
+:-moz-placeholder{color:#2b3d51}
 /* line 71 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
-::-moz-placeholder{color:#fff}
+::-moz-placeholder{color:#2b3d51}
 /* line 74 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
-:-ms-input-placeholder{color:#fff}
+:-ms-input-placeholder{color:#2b3d51}
 /* line 77 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
-input{background:url("../images/icon_magnifying_glass.png") no-repeat 10px #2ea0e6;border:0;padding:8px;margin:10px;width:80%;color:#fff;padding-left:35px;-webkit-border-radius:2px;-moz-border-radius:2px;-ms-border-radius:2px;-o-border-radius:2px;border-radius:2px}
+/*Change by Vinayak 08.03.16*/
+/*input{background:url("../images/icon_magnifying_glass.png") no-repeat 10px #2ea0e6;border:0;padding:8px;margin:10px;width:80%;color:#fff;padding-left:35px;-webkit-border-radius:2px;-moz-border-radius:2px;-ms-border-radius:2px;-o-border-radius:2px;border-radius:2px}
+*/input{background:url("../images/icon_magnifying_glass.png") no-repeat 10px #2ea0e6;
+		display: block;
+		height: 44px;
+		border:0;
+		padding:8px;
+		margin:10px;
+		width:90%;
+		color: #2b3d51;
+		font-size: 14px;
+		font-family: Palanquin, sans-serif;
+		/*color:#fff;*/
+		padding-left:35px;
+		-webkit-border-radius:2px;
+		-moz-border-radius:2px;
+		-ms-border-radius:2px;
+		-o-border-radius:2px;
+		outline: 0;
+		    background-color: #ffffff;
+		/*border-radius:2px*/
+		    border-radius: 100px 100px 100px 100px;
+		}
 /* line 87 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
 
 /* line 90 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
-.br #mapDiv{top:49px;bottom:0;position:absolute;right:0;left:250px}
+/*Vinayak Styling*/
+/*.br #mapDiv{top:49px;bottom:0;position:absolute;right:0;left:250px}*/
+.br #mapDiv{top:0px;bottom:0;position:absolute;right:0;left:250px}
 /* line 97 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
 .br #tableDiv{position:absolute;left:250px;right:0;bottom:0;top:49px;overflow:auto;}
 /* line 105 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
@@ -102,18 +134,23 @@ input{background:url("../images/icon_magnifying_glass.png") no-repeat 10px #2ea0
 /* line 203 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
 .layer-radios{padding-left:10px}
 /* line 205 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
-.br-radio{background:url("../images/checkboxUnchecked.svg") no-repeat left;padding-left:25px;padding-top:5px;padding-bottom:5px;border-bottom:1px solid #e1e1e1;cursor:pointer;}
+/*Vinayak Styling 08.03.16*/
+/*.br-radio{background:url("../images/checkboxUnchecked.svg") no-repeat left;padding-left:25px;padding-top:5px;padding-bottom:5px;border-bottom:1px solid #e1e1e1;cursor:pointer;}*/
+.br-radio{background:url("../images/checkboxUnchecked.svg") no-repeat left;padding-left:25px;padding-top:5px;padding-bottom:5px;border-bottom:1px solid #e1e1e1;cursor:pointer; font-size: 14px}
 /* line 213 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
 .br-radio.selected{background:url("../images/checkboxChecked.svg") no-repeat left}
 /* line 216 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
 
 /*Copy Below for Machine read*/
 /* line 217 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
-.br-accordian .filter-label{cursor:pointer;padding:5px;margin:2px;background:url("../images/icon_collapsed.png") no-repeat calc(100% - 10px) #fff;}
+/*Start of Change Vinayak Styling 08.03.16*/
+/*.br-accordian .filter-label{cursor:pointer;padding:5px;margin:2px;background:url("../images/icon_collapsed.png") no-repeat calc(100% - 10px) #fff; font-size: 14px}*/
+.br-accordian .filter-label{cursor:pointer;padding:5px;margin:2px;background:url("../images/arrow_right.png") no-repeat calc(100% - 10px) #eaeaea; font-size: 14px;border-bottom: 1px solid #ccc}
 /* line 222 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
-.br-accordian .filter-label.selected{background:url("../images/icon_expanded.png") no-repeat calc(100% - 10px) #fff}
+/*.br-accordian .filter-label.selected{background:url("../images/icon_expanded.png") no-repeat calc(100% - 10px) #fff}*/
+.br-accordian .filter-label.selected{background:url("../images/arrow_down.png") no-repeat calc(100% - 10px) #eaeaea}
 /* line 224 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
-.br-accordian .filter-label:hover{background:url("../images/icon_collapsed.png") no-repeat calc(100% - 10px) #feebb6}
+.br-accordian .filter-label:hover{background:url("../images/arrow_right.png") no-repeat calc(100% - 10px) #F9F8F8}
 /* line 228 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
 .br-accordian .accordian-content{max-height:500px;overflow-y:auto;padding-left:10px;padding-right:10px;background:#eeeff1;}
 /* line 235 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
@@ -129,9 +166,9 @@ input{background:url("../images/icon_magnifying_glass.png") no-repeat 10px #2ea0
 /* line 251 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
 
 /* line 252 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
-.br .company-popup .company-popup-title{font-size:16px;font-weight:bold;margin-bottom:5px;border-bottom:solid 1px #d3d3d3;cursor:pointer; height}
+.br .company-popup .company-popup-title{font-family: Palanquin, sans-serif;font-size:16px;font-weight:bold;margin-bottom:5px;border-bottom:solid 1px #d3d3d3;cursor:pointer; height}
 /* line 258 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
-.br .company-popup .company-popup-content{list-style-type:none}
+.br .company-popup .company-popup-content{list-style-type:none; font-family: Palanquin, sans-serif;}
 /* line 262 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
 .br #clusterPopup{width:300px;max-height:380px;overflow-y:auto;}
 /* line 267 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
@@ -141,21 +178,29 @@ input{background:url("../images/icon_magnifying_glass.png") no-repeat 10px #2ea0
 /* line 276 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
 .br-tab-items{display:inline-block}
 /* line 279 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
-.tab-items{border-bottom:5px #fcc72d solid}
+/*Vinayak Styling*/
+/*.tab-items{border-bottom:5px #fcc72d solid}*/
+.tab-items{}
 /* line 281 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
 .tabItem{border:1px #eaeaea solid;display:none;}
 /* line 284 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
 .tabItem.outerselected{display:block}
 /* line 287 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
-.tabItem-label{cursor:pointer;background:#fff;margin:1px;margin-bottom:0;margin-top:10px;padding:5px;color:#fff;background:#2ea0e6;padding-left:25px;-webkit-border-radius:2px 2px 0 0;-moz-border-radius:2px 2px 0 0;-ms-border-radius:2px 2px 0 0;-o-border-radius:2px 2px 0 0;border-radius:2px 2px 0 0;}
+/*Vinayak Styling*/
+/*.tabItem-label{cursor:pointer;background:#fff;margin:1px;margin-bottom:0;margin-top:10px;padding:5px;color:#fff;background:#2ea0e6;padding-left:25px;-webkit-border-radius:2px 2px 0 0;-moz-border-radius:2px 2px 0 0;-ms-border-radius:2px 2px 0 0;-o-border-radius:2px 2px 0 0;border-radius:2px 2px 0 0;}*/
+.tabItem-label{cursor:pointer;background:#fff;margin-bottom:0;margin-top:10px;padding:5px;color:#d6d6d6;background:#2ea0e6;padding-left:25px;-webkit-border-radius:2px 2px 0 0;-moz-border-radius:2px 2px 0 0;-ms-border-radius:2px 2px 0 0;-o-border-radius:2px 2px 0 0;border-radius: 2px 0 0 2px ;}
 /* line 298 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
 .tabItem-label.filter{background:url("../images/icon_filter_white.png") no-repeat 5px #2ea0e6}
 /* line 302 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
 .tabItem-label.statistics{background:url("../images/icon_statistics.png") no-repeat 5px #2ea0e6}
 /* line 305 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
-.tabItem-label.Table{background:url("../images/icon_tabular_results.png") no-repeat 5px #2ea0e6}
+/*Vinayak Styling*/
+/*.tabItem-label.Table{background:url("../images/icon_tabular_results.png") no-repeat 5px #2ea0e6}*/
+.tabItem-label.Table{background:url("../images/icon_tabular_results.png") no-repeat 5px #2b3d51; border-radius: 0 2px 2px 0}
 /* line 308 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
-.tabItem-label.map{background:url("../images/icon_map_results_white.png") no-repeat 5px #2ea0e6}
+/*Vinayak Styling*/
+/*.tabItem-label.map{background:url("../images/icon_map_results_white.png") no-repeat 5px #2ea0e6}*/
+.tabItem-label.map{background:url("../images/icon_map_results_white.png") no-repeat 5px #2b3d51; margin-left: 10px}
 /* line 315 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
 .tabItem-label .selected{background:#eaeaea}
 /* line 318 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
@@ -165,15 +210,21 @@ input{background:url("../images/icon_magnifying_glass.png") no-repeat 10px #2ea0
 /* line 321 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
 .selected .innerContent{display:block}
 /* line 323 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
-.selected .tabItem-label{background:#fcc72d;color:#333;}
+/*Vinayak Stying*/
+.selected .tabItem-label{background:#fcc72d; color: #d6d6d6;
+    border: 1px solid #d6d6d6;
+    box-shadow: 0px 0px 10px 0.5px gray;}
 /* line 327 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
 .selected .tabItem-label.filter{background:url("../images/icon_filter.png") no-repeat 5px #fcc72d}
 /* line 330 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
 .selected .tabItem-label.statistics{background:url("../images/icon_statistics_gray.png") no-repeat 5px #fcc72d}
 /* line 333 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
-.selected .tabItem-label.Table{background:url("../images/icon_tabular_results_gray.png") no-repeat 5px #fcc72d}
+/*Vinayak Styling*/
+.selected .tabItem-label.Table{background:url("../images/icon_tabular_results.png") no-repeat 5px #2b3d51}
 /* line 336 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
-.selected .tabItem-label.map{background:url("../images/icon_map_results.png") no-repeat 5px #fcc72d}
+/*Vinayak Styling*/
+/*.selected .tabItem-label.map{background:url("../images/icon_map_results.png") no-repeat 5px #fcc72d}*/
+.selected .tabItem-label.map{background:url("../images/icon_map_results.png") no-repeat 5px #2b3d51}
 /* line 339 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
 .br-button{padding:10px;cursor:pointer;}
 /* line 342 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
@@ -183,7 +234,10 @@ input{background:url("../images/icon_magnifying_glass.png") no-repeat 10px #2ea0
 /* line 353 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
 
 /* line 354 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
-.br .accordian-container{padding:10px;background:#f7f7f7}
+/*Vinayak Styling 08.03.16*/
+/*.br .accordian-container{padding:10px;background:#f7f7f7}*/
+.br .accordian-container{padding:10px;background:#eaeaea}
+
 .br .accordian-container_mac{padding:10px;background:#fcc72d}
 /* line 358 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
 #filterStats{background:#f7f7f7;padding:10px;}
@@ -208,13 +262,37 @@ input{background:url("../images/icon_magnifying_glass.png") no-repeat 10px #2ea0
 /* line 414 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
 .description-column{width:30%}
 /* line 417 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
-.export-button{margin-top:0;margin-bottom:0;background-color:#2ea0e6;width:100%;padding-left:1rem;text-align:left;padding-right:0;}
+.export-button{background:url("../images/clear_filter2.png") no-repeat 15px #eaeaea;
+margin-top:0;margin-bottom:0;background-color:#eaeaea;width:100%;padding-left:2.3rem;text-align:left;padding-right:0;
+font-family: Palanquin, sans-serif; font-size: 13px; font-weight: 600;
+    color: #2b3d51; padding-top: 0.5rem; padding-bottom: 0.5rem}
 /* line 426 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
-.export-button:hover{background:#fcc72d}
+/*.export-button:hover{background:#fcc72d}*/
+.export-button:hover{background:url("../images/clear_filter2.png") no-repeat 15px #F9F8F8; color: #2b3d51}
+
+.download-button{background:url("../images/icon_download.png") no-repeat 15px #eaeaea;
+margin-top:0;margin-bottom:0;background-color:#eaeaea;width:100%;padding-left:2.3rem;text-align:left;padding-right:0;
+font-family: Palanquin, sans-serif; font-size: 13px; font-weight: 600;
+    color: #2b3d51; padding-top: 0.5rem; padding-bottom: 0.5rem}
+/* line 426 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
+/*.export-button:hover{background:#fcc72d}*/
+.download-button:hover{background:url("../images/icon_download.png") no-repeat 15px #F9F8F8; color: #2b3d51}
+
 /* line 429 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
 .edit-button-holder{width:100%;margin-top:5px;position:relative;}
 /* line 435 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
-.edit-button-holder .edit-button{background-color:#2ea0e6;width:40%;height:28px;line-height:0px}
+/*Vinayak Styling*/
+/*.edit-button-holder .edit-button{background-color:#2ea0e6;width:40%;height:28px;line-height:0px}*/
+.edit-button-holder .edit-button{    background-color: #2b3d51;
+    width: 15%;
+    height: 20px;
+    line-height: 0px;
+    font-family: Palanquin, sans-serif;
+    font-size: 12px;
+    padding-top: 0.5rem;
+    padding-right: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 0.5rem;}
 /* line 442 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
 .gin-control-zoom-home{background:url("../images/home.svg") no-repeat !important;background-position:center !important;background-color:#fff !important}
 /* line 447 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
@@ -222,9 +300,13 @@ input{background:url("../images/icon_magnifying_glass.png") no-repeat 10px #2ea0
 /* line 463 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
 #PanelToggle{display:none}
 /* line 466 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
-#mapArea .tab-items{text-align:right;padding-right:20px;}
+/*Vinayak Styling*/
+/*#mapArea .tab-items{text-align:right;padding-right:20px;}*/
+#mapArea .tab-items{text-align:left;padding-right:20px;}
 /* line 470 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
-#mapArea .tab-items .tabItem-label{margin-right:10px}
+/*Vinayak Styling*/
+/*#mapArea .tab-items .tabItem-label{margin-right:10px}*/
+#mapArea .tab-items .tabItem-label{z-index: 2; position: relative; font-size: 14px;}
 /* line 473 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
 #leftPanel .tab-items{padding-left:20px;}
 /* line 476 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
@@ -254,9 +336,11 @@ input{background:url("../images/icon_magnifying_glass.png") no-repeat 10px #2ea0
 /* line 505 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
 
 .license-holder{font-size:11px;color:#fff;padding:15px}
-.machine-text{font-size:12px;color:#000;padding:10px}
+.machine-text{font-size:13px;color:#000;padding:10px}
 /* line 510 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
-.tab-content{overflow:auto;bottom:0;top:49px;position:absolute}
+/*Vinayak Styling*/
+/*.tab-content{overflow:auto;bottom:0;top:49px;position:absolute}*/
+.tab-content{overflow:auto;bottom:0;top:65px;position:absolute}
 /* line 516 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
 .leftPanelComponent{height:100%}
 /* line 519 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
@@ -266,7 +350,9 @@ input{background:url("../images/icon_magnifying_glass.png") no-repeat 10px #2ea0
 /* line 525 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
 .no-left{left:0}
 /* line 528 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
-.no-top{top:0}
+/*Vinayak Styling*/
+/*.no-top{top:0}*/
+.no-top{top:-65px}
 /* line 531 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */
 .no-bottom{bottom:0}
 /* line 534 : /Users/myeong/git/odesurvey/viz-src/src/app/css/app.styl */

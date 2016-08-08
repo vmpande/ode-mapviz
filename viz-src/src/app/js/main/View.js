@@ -112,6 +112,9 @@ function(
 
         props.exportMap = Events.exportMap;
 
+        //Added by Vinayak for adding Machine Readability Layer 07.28.16
+        props.addLayer = Events.addLayer;
+
         props.statisticsDiv = "filterStats";
 
         props.accordian = {

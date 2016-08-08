@@ -46,10 +46,7 @@ define([
 		    	props.selected = selected;
 		    	this.props.keys.changed && this.props.keys.changed(this.props.keys);
 		    	
-		    	console.log('handleClick_mac props',props);
-
-				MapController.addMaclayer();
-				
+		    	console.log('handleClick_mac props',props);				
 		 },
 		 //End of Addition by Vinayak
 
@@ -106,28 +103,37 @@ define([
 
 			//test2
 
+			//console.log('this.props.keys',this.props.keys.value);
+
+			//console.log('this.props.keys.label', this.props.keys.label);
+
 			if (this.props.keys.label == 'NA')// || this.props.keys.value === 'machineread')//test
 			{
-			//console.log('true',this.props.keys);//Vinayak
+			console.log('inside NA');
 			return (	
 				React.createElement("div", {className: null},
 
 				React.createElement("div", {className: 'machine-text'}, 
-					React.createElement("span", null, "Some text about MRP Some text about MRP Some text about MRP")),	
-
-				React.createElement("div", {onClick: handleClick_mac, className: classString}, 
-					React.createElement("span", {className: "company-title-label"}, props.label))
+					React.createElement("span", null, "The Machine Readability Projects shows uses of machine-readable open government data in low and lower middle income countries."))
 				)
 
 			);
 			}
-			else if (this.props.keys.value === 'machineread') 
+			else if (this.props.keys.value === 'machineread')
 			{
-				
+							console.log('inside machineread');
 					return (
-						React.createElement("div", {onClick: handleClick_mac, className: classString}, 
-								React.createElement("span", {className: "company-title-label"}, props.label)
-							));
+						React.createElement("div", {onClick: handleClick, className: classString}, 
+								React.createElement("span", {className: "company-title-label"}, props.label))
+
+						);
+
+
+			}
+			else if (this.props.keys.label == 'Yes' || this.props.keys.label == 'No')
+			{
+							console.log('inside yes and no');
+				return null
 			}
 			else
 			{
