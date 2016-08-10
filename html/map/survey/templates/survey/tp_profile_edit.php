@@ -142,40 +142,26 @@ textdomain($domain);
         <fieldset>
         <div class="col-md-4" id="industry_id_col-1">
           <input type="radio" name="industry_id" class="industry_id" value="Agriculture" <?php if ("Agriculture" == $org_profile[0]['industry_id']) {echo "checked";} ?>>&nbsp; Agriculture
-          <br /><input type="radio" name="industry_id" class="industry_id" value="Arts and culture" <?php if ("Arts and culture" == $org_profile[0]['industry_id']) {echo "checked";} ?>>&nbsp; Arts and culture
-          <br /><input id="industry_id_cul" type="radio" name="industry_id" class="industry_id" value="Business and legal services" required <?php if ("Business and legal services" == $org_profile[0]['industry_id']) {echo "checked";} ?>>&nbsp; Business and legal services
-          <br /><input type="radio" name="industry_id" class="industry_id" value="Consumer services" <?php if ("Consumer services" == $org_profile[0]['industry_id']) {echo "checked";} ?>>&nbsp; Consumer services
-          <br /><input type="radio" name="industry_id" class="industry_id" value="Data/information technology" <?php if ("Data/information technology" == $org_profile[0]['industry_id']) {echo "checked";} ?>>&nbsp; Data/information technology
+          <br /><input type="radio" name="industry_id" class="industry_id" value="Arts, culture and tourism" <?php if ("Arts, culture and tourism" == $org_profile[0]['industry_id']) {echo "checked";} ?>>&nbsp; Arts, culture and tourism
+          <br /><input id="industry_id_cul" type="radio" name="industry_id" class="industry_id" value="Business, research and consulting" required <?php if ("Business, research and consulting" == $org_profile[0]['industry_id']) {echo "checked";} ?>>&nbsp; Business, research and consulting
+          <br /><input type="radio" name="industry_id" class="industry_id" value="Consumer" <?php if ("Consumer" == $org_profile[0]['industry_id']) {echo "checked";} ?>>&nbsp; Consumer
+          <br /><input type="radio" name="industry_id" class="industry_id" value="IT and geospatial" <?php if ("IT and geospatial" == $org_profile[0]['industry_id']) {echo "checked";} ?>>&nbsp; IT and geospatial
           <br /><input type="radio" name="industry_id" class="industry_id" value="Education" <?php if ("Education" == $org_profile[0]['industry_id']) {echo "checked";} ?>>&nbsp; Education
-          <br /><input type="radio" name="industry_id" class="industry_id" value="Energy" <?php if ("Energy" == $org_profile[0]['industry_id']) {echo "checked";} ?>>&nbsp; Energy
-          <br /><input type="radio" name="industry_id" class="industry_id" value="Environment" <?php if ("Environment" == $org_profile[0]['industry_id']) {echo "checked";} ?>>&nbsp; Environment
-          <br /><input type="radio" name="industry_id" class="industry_id" value="Finance and investment" <?php if ("Finance and investment" == $org_profile[0]['industry_id']) {echo "checked";} ?>>&nbsp; Finance and investment
+          <br /><input type="radio" name="industry_id" class="industry_id" value="Energy and climate" <?php if ("Energy and climate" == $org_profile[0]['industry_id']) {echo "checked";} ?>>&nbsp; Energy and climate
         </div>
         <div class="col-md-4" id="industry_id_col-2">
-          <input type="radio" name="industry_id" class="industry_id" value="geo">&nbsp; Geospatial/mapping
+          <input type="radio" name="industry_id" class="industry_id" value=" Finance, investment and insurance">&nbsp;  Finance, investment and insurance
           <br /><input type="radio" name="industry_id" class="industry_id" value="Governance" <?php if ("Governance" == $org_profile[0]['industry_id']) {echo "checked";} ?>>&nbsp; Governance
-          <br /><input type="radio" name="industry_id" class="industry_id" value="Healthcare" <?php if ("Healthcare" == $org_profile[0]['industry_id']) {echo "checked";} ?>>&nbsp; Healthcare
-          <br /><input type="radio" name="industry_id" class="industry_id" value="Housing and real estate" <?php if ("Housing and real estate" == $org_profile[0]['industry_id']) {echo "checked";} ?>>&nbsp; Housing and real estate
-          <br /><input type="radio" name="industry_id" class="industry_id" value="Insurance" <?php if ("Insurance" == $org_profile[0]['industry_id']) {echo "checked";} ?>>&nbsp; Insurance
+          <br /><input type="radio" name="industry_id" class="industry_id" value="Health" <?php if ("Health" == $org_profile[0]['industry_id']) {echo "checked";} ?>>&nbsp; Health
+          <br /><input type="radio" name="industry_id" class="industry_id" value="Housing, construction and real estate" <?php if ("Housing, construction and real estate" == $org_profile[0]['industry_id']) {echo "checked";} ?>>&nbsp; Housing, construction and real estate
           <br /><input type="radio" name="industry_id" class="industry_id" value="Media and communications" <?php if ("Media and communications" == $org_profile[0]['industry_id']) {echo "checked";} ?>>&nbsp; Media and communications
-          <br /><input type="radio" name="industry_id" class="industry_id" value="Mining/Manufacturing" <?php if ("Mining/Manufacturing" == $org_profile[0]['industry_id']) {echo "checked";} ?>>&nbsp; Mining/Manufacturing
-          <br /><input type="radio" name="industry_id" class="industry_id" value="Research and consulting" <?php if ("Research and consulting" == $org_profile[0]['industry_id']) {echo "checked";} ?>>&nbsp; Research and consulting
-          <br /><input type="radio" name="industry_id" class="industry_id" value="Security and public safety" <?php if ("Security and public safety" == $org_profile[0]['industry_id']) {echo "checked";} ?>>&nbsp; Security and public safety
-        </div>
-        <div class="col-md-4" id="industry_id_col-3">
-          <input type="radio" name="industry_id" class="industry_id" value="sci">&nbsp; Scientific research
-          <br /><input type="radio" name="industry_id" class="industry_id" value="Telecommunications/internet service providers (ISPs)" <?php if ("Telecommunications/internet service providers (ISPs)" == $org_profile[0]['industry_id']) {echo "checked";} ?>>&nbsp; Telecommunications/internet service providers (ISPs)
-          <br /><input type="radio" name="industry_id" class="industry_id" value="Tourism" <?php if ("Tourism" == $org_profile[0]['industry_id']) {echo "checked";} ?>>&nbsp; Tourism
-          <br /><input type="radio" name="industry_id" class="industry_id" value="Transportation and logistics" <?php if ("Transportation and logistics" == $org_profile[0]['industry_id']) {echo "checked";} ?>>&nbsp; Transportation and logistics
-          <br /><input type="radio" name="industry_id" class="industry_id" value="Water and sanitation" <?php if ("Water and sanitation" == $org_profile[0]['industry_id']) {echo "checked";} ?>>&nbsp; Water and sanitation
-          <br /><input type="radio" name="industry_id" class="industry_id" value="Weather" <?php if ("Weather" == $org_profile[0]['industry_id']) {echo "checked";} ?>>&nbsp; Weather
+          <br /><input type="radio" name="industry_id" class="industry_id" value="Transportation and logistics " <?php if ("Transportation and logistics " == $org_profile[0]['industry_id']) {echo "checked";} ?>>&nbsp; Transportation and logistics 
           <br /><input type="radio" name="industry_id" class="industry_id" value="Other" <?php if ("Other" == $org_profile[0]['industry_id']) {echo "checked";} ?>>&nbsp; Other
               <?php if ("Other" == $org_profile[0]['industry_id']) { ?>
                 <input type="text" class="form-control" name="industry_other" placeholder="Describe other" value="<?php echo $org_profile[0]['industry_other'];?>">
               <?php } else { ?>
                 <input type="text" class="form-control" style="display:none" name="industry_other" placeholder="Describe other">
               <?php } ?>
-        </div>
         </fieldset>
       </div>
 
