@@ -6,7 +6,7 @@
         // Build Page Based on Template
         win.dojoConfig = config;
         $(document).ready(function(){
-            var setTemplate = $.get( 'http://54.210.82.88/app/templates/app.html', function( data ) {
+            var setTemplate = $.get( 'http://54.210.82.88/odeweb/app/templates/app.html', function( data ) {
                 $('body').html(data);
                 $(document).foundation();
             });
@@ -54,7 +54,7 @@
             "dojo/domReady!"
         ],
         callback: function () {
-            loadScript('http://54.210.82.88/app/js/loader.js');
+            loadScript('http://54.210.82.88/odeweb/app/js/loader.js');
         }
     };
 
