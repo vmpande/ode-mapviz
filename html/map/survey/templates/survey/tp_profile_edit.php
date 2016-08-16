@@ -130,9 +130,9 @@ textdomain($domain);
           <input type="hidden" class="form-control" id="org_hq_country_locode" name="org_hq_country_locode" data-geo="country_short" value="<?php echo $org_country[0]['org_hq_country_locode'];?>">
 
           <!--label for="latitude">lat</label -->
-          <input type="hidden" class="form-control" id="latitude" name="latitude" required data-geo="lat" value="<?php echo $org_profile[0]['latitude'];?>">
+          <input type="hidden" class="form-control" id="latitude" name="latitude" required data-geo="lat" value="<?php echo $org_loc[0]['latitude'];?>">
           <!--label for="longitude">lng</label -->
-          <input type="hidden" class="form-control" id="longitude" name="longitude" required data-geo="lng" value="<?php echo $org_profile[0]['longitude'];?>">
+          <input type="hidden" class="form-control" id="longitude" name="longitude" required data-geo="lng" value="<?php echo $org_loc[0]['longitude'];?>">
         </div>
       </div>
   

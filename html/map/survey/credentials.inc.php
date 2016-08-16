@@ -30,6 +30,7 @@ function connect_db() {
 	$dbuser="root";
 	$dbpass="Sep@2015";
 	$dbname="opendata_db";
+	$dbh = "";
 	try
 	{
 		$dbh = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass);
