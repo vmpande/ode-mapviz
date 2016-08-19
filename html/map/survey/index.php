@@ -135,7 +135,6 @@ $app->get('/admin/protected/', function () use ($app) {
     $content['intro'] = <<<HTML
 		<p>Home ODE Survey Studies</p>
 HTML;
-echo "dsds";
 	// return $app->response->setBody($response);
 	// Render content with simple bespoke templates
 	$app->view()->setData(array('content' => $content));
@@ -239,50 +238,82 @@ $app->get('/start/internal/add/', function () use ($app) {
  //    	 $app->redirect("/map/survey/oops/");
  //    }
 	 $survey_name = "opendata";
-    $survey_query="INSERT INTO org_surveys(
-    `survey_name`)VALUES (:survey_name)";
+	 $maxId = "";
+	 $fetch_id = "select MAX(object_id) as maxObjectId from org_surveys";
+	 try {
+        $db = connect_db();
+        $stmt = $db->query($fetch_id);
+        $row = $stmt->fetchObject();
+        $maxId = $row->maxObjectId;
+    } 
+    catch(PDOException $e) {
+        echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+    } 
+    $survey_query="INSERT INTO org_surveys(`object_id`, 
+    `survey_name`)VALUES (:object_id, :survey_name)";
+   // echo $maxId;
+
+    $maxId = $maxId + 1;
+    $lastsurvey_id = "";
 try {
         $db = connect_db();
         $stmt = $db->prepare($survey_query);
         $stmt->bindParam("survey_name",$survey_name);
+        $stmt->bindParam("object_id",$maxId);
         $stmt->execute();
-    	$lastsurvey_id=$db->lastInsertId();
+    	//$lastsurvey_id=$db->lastInsertId();
     } 
     catch(PDOException $e) {
         echo '{"error":{"text":'. $e->getMessage() .'}}'; 
     }   
 	// print "db connection working successfully.";
-    
-    $org_surveys['object_id'] = $lastsurvey_id;
+    echo $maxId;
+    $org_surveys['object_id'] = $maxId;
     if(isset($org_surveys['object_id'])) {
     	// Success
     	$app->redirect("/map/survey/".$org_surveys['object_id']."/form/internal/add/");
     } else {
     	// Failure
     	echo "Problem. Promlem with record creation not yet handled.";
-    	exit;
-    	$app->redirect("/error".$org_surveys['object_id']);
+    //	exit;
+    //	$app->redirect("/error".$org_surveys['object_id']);
     }
 });
 $app->get('/start/', function () use ($app) { 
 	
-	
-    $survey_name = "opendata";
-    $survey_query="INSERT INTO org_surveys(
-    `survey_name`)VALUES (:survey_name)";
+	$survey_name = "opendata";
+    $maxId = "";
+	 $fetch_id = "select MAX(object_id) as maxObjectId from org_surveys";
+	 try {
+        $db = connect_db();
+        $stmt = $db->query($fetch_id);
+        $row = $stmt->fetchObject();
+        $maxId = $row->maxObjectId;
+    } 
+    catch(PDOException $e) {
+        echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+    } 
+
+    $survey_query="INSERT INTO org_surveys(`object_id`, 
+    `survey_name`)VALUES (:object_id, :survey_name)";
+   // echo $maxId;
+
+    $maxId = $maxId + 1;
+    $lastsurvey_id = "";
 try {
         $db = connect_db();
         $stmt = $db->prepare($survey_query);
         $stmt->bindParam("survey_name",$survey_name);
+        $stmt->bindParam("object_id",$maxId);
         $stmt->execute();
-    	$lastsurvey_id=$db->lastInsertId();
+    	//$lastsurvey_id=$db->lastInsertId();
     } 
     catch(PDOException $e) {
         echo '{"error":{"text":'. $e->getMessage() .'}}'; 
     }   
 	// print "db connection working successfully.";
-    
-    $org_surveys['object_id'] = $lastsurvey_id; //captures the object_id from mysql db autoincrement value
+    echo $maxId;
+    $org_surveys['object_id'] = $maxId;
     if(isset($org_surveys['object_id'])) {
     	// Success
     	$app->redirect("/map/survey/".$org_surveys['object_id']."/form");
@@ -361,6 +392,7 @@ $app->get('/:surveyId/form/:lang/', function ($lastsurvey_id, $lang) use ($app) 
 	$app->render('survey/tp_survey_gettext.php');
 });
 // ************
+
 $app->get('/:surveyId/form/internal/add/', function ($lastsurvey_id) use ($app) {
 	// Requires login to access
 	//if ( !isset($_SESSION['username']) ) { $app->redirect("/map/survey/admin/login/"); }
@@ -375,6 +407,8 @@ $app->get('/:surveyId/form/internal/add/', function ($lastsurvey_id) use ($app) 
 	$content['surveyName'] = "opendata";
 	$content['title'] = "Open Data Enterprise Survey (Internal)";
 	$content['language'] = "en_US";
+
+
 	
 	//echo json_encode($users);
 	$app->view()->setData(array('content' => $content ));
@@ -386,9 +420,11 @@ $app->post('/2du/:surveyId/', function ($lastsurvey_id) use ($app) {
      $db = connect_db(); //connect to db
 	// Access post variables from submitted survey form
 	$allPostVars = $app->request->post(); 
+
+	//var_dump($allPostVars);
 	// echo "<pre>"; print_r($allPostVars); echo "</pre>";
 	// writeDataLog($allPostVars);
-	$app->log->info(date_format(date_create(), 'Y-m-d H:i:s')."; INFO; ". str_replace("\n", "||", print_r($allPostVars, true)) );
+		$app->log->info(date_format(date_create(), 'Y-m-d H:i:s')."; INFO; ". str_replace("\n", "||", print_r($allPostVars, true)) );
     // Set string values to numeric values
     $allPostVars["org_profile_year"] = intval($allPostVars["org_profile_year"]);
     $allPostVars["org_year_founded"] = intval($allPostVars["org_year_founded"]);
@@ -397,7 +433,7 @@ $app->post('/2du/:surveyId/', function ($lastsurvey_id) use ($app) {
     // org_country_info
 	$params = array("org_hq_country","org_hq_country_locode");
 	$org_country_info = array();
-	var_dump($allPostVars);
+	//var_dump($allPostVars);
 	foreach ($params as $param) {
     	if (!isset($allPostVars[$param])) { $allPostVars[$param] = null; }
     	$org_country_info[$param] = $allPostVars[$param];
@@ -471,8 +507,20 @@ $app->post('/2du/:surveyId/', function ($lastsurvey_id) use ($app) {
     }catch(PDOException $e) {
     echo '{"error":{"text":'. $e->getMessage() .'}}'; 
     }
- 
-     $Org_prof_query =	"INSERT INTO org_profiles(`industry_id`,
+     
+
+/*
+     if(isset($allPostVars['m_read'])){
+
+
+    if(!empty($allPostVars['m_read']) {
+
+        $machine_read =$_POST['m_read'];
+        
+
+        }
+    }*/
+      $Org_prof_query =	"INSERT INTO org_profiles(`industry_id`,
 	`industry_other`,
 	`no_org_url`,
 	`org_additional`,
@@ -582,7 +630,7 @@ $app->post('/2du/:surveyId/', function ($lastsurvey_id) use ($app) {
         $stmt2->execute();
     } catch(PDOException $e) {
         echo '{"error":{"text":'. $e->getMessage() .'}}'; 
-    }   
+    }        
     //org_contacts
     $params = array("survey_contact_first", "survey_contact_last", "survey_contact_title", "survey_contact_email", "survey_contact_phone");
     $contact_details = array();
@@ -592,7 +640,7 @@ $app->post('/2du/:surveyId/', function ($lastsurvey_id) use ($app) {
     	$contact_object[$param] = $allPostVars[$param];
     }
     $survey_contact_first = $contact_object["survey_contact_first"];
-    $survey_contact_last = $contact_object["survey_contact_last"];
+    $survey_contact_last =  $contact_object["survey_contact_last"];
     $survey_contact_title = $contact_object["survey_contact_title"];
     $survey_contact_email = $contact_object["survey_contact_email"];
     $survey_contact_phone = $contact_object["survey_contact_phone"];
@@ -1556,21 +1604,21 @@ $app->get('/survey/opendata/data/org/:profile_id', function ($profile_id) use ($
 });
 // **************
 $app->get('/data/flatfile.json', function () use ($app) {
-	echo "fknfdnfd";
+
 	$db = connect_db();
 	$sql="select * from org_surveys where object_id!=1";
     
 	$stmt = $db->query($sql); 
 	$query_result1 = $stmt->fetchAll();
+
 	//var_dump($users);
-	//fetch all object id first			
-	echo "hey";															
+	//fetch all object id first																		
 	$object_id = array();
 	foreach ($query_result1 as $row ) {
 		array_push($object_id, $row['object_id'] );
 	}
 	
-   $createdAt = array();
+    $createdAt = array();
 	$data_use_type = array();	
 	$data_use_type_other = array();
 	$industry_id = array();
@@ -1595,15 +1643,19 @@ $app->get('/data/flatfile.json', function () use ($app) {
 	$org_year_founded = array();
 	$profile_id = array();
 	$updatedAt = array();
+
+
 	$org_hq_city = array();
 	$org_hq_city_locode = array();
 	$org_hq_st_prov = array();
+
 	$org_hq_country = array();
 	$org_hq_country_income = array();
 	$org_hq_country_income_code = array();
 	$org_hq_country_locode = array();
 	$org_hq_country_region = array();
 	$org_hq_country_region_code = array();
+
 	$advocacy = array();
 	$advocacy_desc = array();
 	$org_opt = array();
@@ -1614,11 +1666,13 @@ $app->get('/data/flatfile.json', function () use ($app) {
 	$prod_srvc_desc = array();
     $research = array();
     $research_desc = array();
+
     $data_country_count = array();
 	//calculate total number of objects, this will total number of objects in json as well.
 	$totalObjects = count($object_id)-1;
 	//echo $totalObjects;
 	//run for loop those many times.
+	$count = 0;
 	for($i = 0;$i < $totalObjects;$i++){
 		//echo $object_id[$i];
 		$sql="select * from org_profiles where profile_id=?";
@@ -1630,13 +1684,13 @@ $app->get('/data/flatfile.json', function () use ($app) {
 		$loc_id = "";
 	 	foreach ($query_result1 as $row ) {
 	 		//echo $row['object_id'];
-	 		if($row['org_profile_status'] == "publish") {
 	 		array_push($createdAt, $row['createdAt'] );
 			array_push($data_use_type, $row['data_use_type']);
 			array_push($object_id, $row['object_id'] );
 			array_push($data_use_type_other, $row['data_use_type_other'] );
 			array_push($industry_id, $row['industry_id'] );
 			array_push($industry_other, $row['industry_other'] );
+
 			array_push($no_org_url, $row['no_org_url'] );
 			array_push($org_additional, $row['org_additional'] );
 			array_push($org_description, $row['org_description'] );
@@ -1657,11 +1711,12 @@ $app->get('/data/flatfile.json', function () use ($app) {
             array_push($updatedAt, $row['updatedAt'] );
             $loc_id = $row['org_loc_id']; 
 			//write all columns in similar way.
-		echo $profile_id;
+		}
         $sql1="select * from org_locations_info where object_id=?";
 		$stmt = $db->prepare($sql1);
 		$stmt->bindParam(1, $loc_id);
 		$stmt->execute();
+
 		$query_result2 = $stmt->fetchAll();
 		//var_dump($users);
 		$countryId = "";
@@ -1673,24 +1728,39 @@ $app->get('/data/flatfile.json', function () use ($app) {
 			array_push($longitude, $row['longitude'] );
 			$countryId = $row['country_id'];
 		}
-		$sql2="select * from org_country_info where country_id=?";
-		$stmt = $db->prepare($sql2); 
-		$stmt->bindParam(1, $countryId);
-		$stmt->execute();
-		$query_result3 = $stmt->fetchAll();
-		//var_dump($users);  
-		foreach ($query_result3 as $row ) {
-			array_push($org_hq_country, $row['org_hq_country']);
-			array_push($org_hq_country_income, $row['org_hq_country_income'] );
-			array_push($org_hq_country_income_code, $row['org_hq_country_income_code'] );
-			array_push($org_hq_country_locode, $row['org_hq_country_locode'] );
-			array_push($org_hq_country_region, $row['org_hq_country_region'] );
-			array_push($org_hq_country_region_code, $row['org_hq_country_region_code'] );
+		if($countryId == NULL) {
+			$count = $count + 1;
+			//echo "null value";
+			array_push($org_hq_country, null);
+			array_push($org_hq_country_income, null);
+			array_push($org_hq_country_income_code, null);
+			array_push($org_hq_country_locode, null);
+			array_push($org_hq_country_region, null);
+			array_push($org_hq_country_region_code, null);
+		} else {
+			$sql2="select * from org_country_info where country_id=?";
+			$stmt = $db->prepare($sql2); 
+			$stmt->bindParam(1, $countryId);
+			$stmt->execute();
+
+			$query_result3 = $stmt->fetchAll();
+			//var_dump($users);
+
+			foreach ($query_result3 as $row ) {
+				array_push($org_hq_country, $row['org_hq_country']);
+				array_push($org_hq_country_income, $row['org_hq_country_income'] );
+				array_push($org_hq_country_income_code, $row['org_hq_country_income_code'] );
+				array_push($org_hq_country_locode, $row['org_hq_country_locode'] );
+				array_push($org_hq_country_region, $row['org_hq_country_region'] );
+				array_push($org_hq_country_region_code, $row['org_hq_country_region_code'] );
+			}
 		}
+
 		$sql3="select * from data_app_info where profile_id=?";
 		$stmt = $db->prepare($sql3); 
 		$stmt->bindParam(1, $object_id[$i]);
 		$stmt->execute();
+
 		$query_result4 = $stmt->fetchAll();
 		foreach ($query_result4 as $row ) {
 			array_push($advocacy, $row['advocacy']);
@@ -1704,24 +1774,27 @@ $app->get('/data/flatfile.json', function () use ($app) {
 			array_push($research, $row['research'] );
 			array_push($research_desc, $row['research_desc'] );
 		}
+
 		$sql4="select * from org_data_sources where profile_id=? limit 1";
 		$stmt = $db->prepare($sql4); 
 		$stmt->bindParam(1, $object_id[$i]);
 		$stmt->execute();
+
 		$query_result5 = $stmt->fetchAll();
 		//var_dump($users);
+
 		foreach ($query_result5 as $row ) {
 			array_push($data_country_count, $row['data_country_count']);
 		}
 	}
-}
-}
-echo "ff";
-	$totalProfile = count($profile_id)-1;
-	echo $totalProfile;
+	echo "count....:";
+	echo $count;
+
 	$allArrays = array();
 	$finalArray = array();
-	for ($i = 0; $i < $totalProfile; $i++) {
+
+	for ($i = 0; $i < $totalObjects; $i++) {
+
 		$allArrays['createdAt'] = $createdAt[$i];
 		$allArrays['data_country_count'] = $data_country_count[$i];
 		$allArrays['data_use_type'] = $data_use_type[$i];
