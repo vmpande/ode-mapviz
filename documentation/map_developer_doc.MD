@@ -72,28 +72,28 @@ This document is explains how we can edit each and every feature in the map and 
 ##Explanation according to features
 
 1. Adding/Removing the Left Panel filters
-* Make changes to the map_config file. Add/remove the filter in the filters: [ …] object of the return statement.
-* To manipulate labels and display of the filters, make changes to LeftPanel.js and SelectableItem.js (called by LeftPanel.js)
+   * Make changes to the map_config file. Add/remove the filter in the filters: [ …] object of the return statement.
+   * To manipulate labels and display of the filters, make changes to LeftPanel.js and SelectableItem.js (called by LeftPanel.js)
 
 2. Adding/Removing items from the left panel
-* Make changes to the return of LeftPanel.js
-* Clear Filters - function in leftpanel.js
-* Download CSV and JSON data buttons - Search “props.exportTableData” in LeftPanel.js and all the documents and follow the track from where it gets called originally.
+   * Make changes to the return of LeftPanel.js
+   * Clear Filters - function in leftpanel.js
+   * Download CSV and JSON data buttons - Search “props.exportTableData” in LeftPanel.js and all the documents and follow the track from where it gets called originally.
 
 3. Making changes to the Map
-* Zoom control, bounds, baselayer - This can be changed in the MapController.js
-* To edit the popups - Make changes to CompanyPopup.js and CusterPopup.js
-* To change the color and size of the bubbles - Make changes to app>includes>markercluster>css>MarkerCluster.Default.js
+   * Zoom control, bounds, baselayer - This can be changed in the MapController.js
+   * To edit the popups - Make changes to CompanyPopup.js and CusterPopup.js
+   * To change the color and size of the bubbles - Make changes to app>includes>markercluster>css>MarkerCluster.Default.js
 
-4.Making Changes to the Map View and Data View buttons
-* To edit the labels for the Map and Data view, make changes to the map-config.js code.
-* Make changes to WIdgetFactory.js to set the default view.
+4. Making Changes to the Map View and Data View buttons
+   * To edit the labels for the Map and Data view, make changes to the map-config.js code.
+   * Make changes to WIdgetFactory.js to set the default view.
 
 5. Making changes to Data View
-* The table is created in the return of TableResults.js
-* Make changes to the same file to manipulate 
-* Make changes to griddle.js for customizing the table look and feel
+   * The table is created in the return of TableResults.js
+   * Make changes to the same file to manipulate 
+   * Make changes to griddle.js for customizing the table look and feel
 	
-5. Styling the webpage
-* To make any styling or css changes to the map page, make changes in the app.css file.
+6. Styling the webpage
+   * To make any styling or css changes to the map page, make changes in the app.css file.
 
