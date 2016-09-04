@@ -25,9 +25,9 @@ For example, if a user wants to find all the Nonprofit organizations on the map 
   * Clicking on any one of the organization bubble, shows a popup with the organization details.
   * One can also edit the details using the “Edit” button on the popup.
 
-Data View
-Clicking on the Data View tab loads the data view of the organizations.
-The organizations are sorted in the ascending order of the organization names.
-The filters work the same way in data view as in map view
-Also,clicking on the data view after filtering in map view will shows the corresponding organization that are remaining on the map view.
-Clicking on any one of the organization bubble, shows a popup with the organization details. One can also edit the details using the “Edit” button on the popup.
+**Data View**
+  * Clicking on the Data View tab loads the data view of the organizations.
+  * The organizations are sorted in the ascending order of the organization names.
+  * The filters work the same way in data view as in map view
+  * Also,clicking on the data view after filtering in map view will shows the corresponding organization that are remaining on the map view.
+  * Clicking on any one of the organization bubble, shows a popup with the organization details. One can also edit the details using the “Edit” button on the popup.
