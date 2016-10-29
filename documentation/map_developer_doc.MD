@@ -1,5 +1,5 @@
 #Map Developer Document  
-This document is explains how we can edit each and every feature in the map and explains the important pieces of code in particular files. The map has been built using React.js
+This document explains how we can edit each and every feature in the map and explains the important pieces of code in particular files. The map has been built using React.js
 
 ##Explanation according to individual files
 
